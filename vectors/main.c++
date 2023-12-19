@@ -13,5 +13,11 @@ int main()
     for (size_t i = 0 ; i < items.size() ; i++){
         cout << "items[" << i << "] = " << items.at(i) << endl; 
     }
+
+    size_t index = 0;
+    for (const auto& item : items) {
+        cout << "items[" << index << "] = " << item << endl;
+        ++index;
+    }
     return 0;
 }
