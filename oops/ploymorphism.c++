@@ -18,8 +18,19 @@ class A{
 
 class B {
     public:
-    void sayHello(){
-        cout << "Helllo from Class B " << endl;
+    int a;
+    int b;
+
+
+    int add(){
+        return a+b;
+    }
+
+    void operator+ (B object ){
+        int v1 = (*this).a;
+        int v2 = object.a;
+        cout << "Output = " << v2-v1 << endl;
+        cout << "Subtraction is done "<< endl;
     }
 
 };
@@ -29,6 +40,12 @@ int main()
 
     obj.sayHello();
     obj.sayHello("sagar");
+
+    B obj1 , obj2 ;
+    obj1.a = 7;
+    obj2.a = 17;
+
+    obj1 + obj2;
     
     return 0;
 }
