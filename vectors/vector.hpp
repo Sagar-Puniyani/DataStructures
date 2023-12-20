@@ -34,8 +34,12 @@ class vector {
     }
 
 
-    T& operator [](int index);
-    const T& operator [](int index) const ;
+    T& operator [](int index){
+
+    }
+    const T& operator [](int index) const {
+        
+    }
 
 };
 

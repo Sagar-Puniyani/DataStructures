@@ -26,13 +26,22 @@ class B {
         return a+b;
     }
 
-    void operator+ (B object ){
+    void operator+ (B &object ){
         int v1 = (*this).a;
         int v2 = object.a;
         cout << "Output = " << v2-v1 << endl;
         cout << "Subtraction is done "<< endl;
     }
 
+
+};
+class C : public B {
+    public:
+    void operator + (B &object ){
+        int v1 = (*this).a;
+        int v2 = object.a;
+        cout << "Output = " << v1*v2 << endl;
+    }
 };
 int main()
 {
@@ -46,6 +55,12 @@ int main()
     obj2.a = 17;
 
     obj1 + obj2;
+
+    C obj3 , obj4 ;
+    obj3.a = 7;
+    obj4.a = 17;
+    obj3 + obj4 ;
+
     
     return 0;
 }
