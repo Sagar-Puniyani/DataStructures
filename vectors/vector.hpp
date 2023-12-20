@@ -63,7 +63,16 @@ class vector {
 
 // v = w 
     vector& operator = (const vector &object ) {
-
+        if ( size_ < object.size_){
+            delete[] elements;
+            capacity_ = 2 * size_;
+            elements = new T[capacity_];
+        }
+        for ( auto i = 0 ; i<object.size_ ; i++){
+            elements[i] = object.elements[i];
+        }
+        size_ = object.size_;
+        return *this;
     }
 
 // implementation of the push opeartion 
@@ -82,11 +91,16 @@ class vector {
     }
 
     void pop_back() {
-
+        if (size_ > 0 ){
+            size_--;
+        }
     }
 
     void Erase(int index ){
-
+        for (auto i = index ; i < size_ ; i++){
+            elements[i] = elements[i+1];
+        }
+        size_--;
     }
 
     void insert(int index , T& value ){
@@ -94,7 +108,9 @@ class vector {
     }
 
     void clear(){
-
+        size_ = 0;
+        capacity_ = default_vector_size;
+        delete[] elements;
     }
 };
 
