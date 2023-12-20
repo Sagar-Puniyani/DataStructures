@@ -2,7 +2,16 @@
 using namespace std;
 
 class A{
+    private:
+        int c =  48767;
+
     public:
+
+    void printc(){
+        cout << c << endl;
+        cout << this->c << endl;
+
+    }
 
     // function OverLoading 
     void sayHello(){
@@ -61,6 +70,8 @@ int main()
     obj4.a = 17;
     obj3 + obj4 ;
 
+
+    obj.printc();
     
     return 0;
 }
