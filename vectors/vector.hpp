@@ -10,14 +10,32 @@ class vector {
         T* items;
 
     public:
+
     vector();
     vector(int n ,const T  &value );
-    vector(const vector& v1 );
+    vector(const vector& v0 );
+    ~vector();
+
+    int size() const {
+
+    }
+
+    int capacity() const {
+
+    }
+
+    bool Isempty() const {
+
+    }
 
 // implementation of the push opeartion 
     void push_back(T &object ){
 
     }
+
+
+    T& operator [](int index);
+    const T& operator [](int index) const ;
 
 };
 
