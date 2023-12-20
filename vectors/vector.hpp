@@ -1,7 +1,6 @@
 #ifndef VECTOR_H 
 #define VECTOR_H 
 
-
 const int default_vector_size = 5;
 template <typename T > 
 class vector {
