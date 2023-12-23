@@ -29,7 +29,7 @@ class vector {
         this->capacity_ = v0.capacity_;
         elements = new T[capacity_];
 
-        for (int i=0 ; i<v0.size_ ; i++) {
+        for (size_t i=0 ; i<v0.size_ ; i++) {
             elements[i] = v0.elememts[i];
         }
     }
@@ -68,7 +68,7 @@ class vector {
             capacity_ = 2 * size_;
             elements = new T[capacity_];
         }
-        for ( auto i = 0 ; i<object.size_ ; i++){
+        for ( size_t i = 0 ; i<object.size_ ; i++){
             elements[i] = object.elements[i];
         }
         size_ = object.size_;
@@ -79,7 +79,7 @@ class vector {
     void push_back(const T &object ){
         if ( size_ == capacity_ ) {
             T* newarray = new T[2 * capacity_];
-            for (int i=0 ; i < size_ ; i++){
+            for (size_t i=0 ; i < size_ ; i++){
                 newarray[i] = elements[i];
             }
             delete[] elements;
@@ -97,7 +97,7 @@ class vector {
     }
 
     void Erase(int index ){
-        for (auto i = index ; i < size_ ; i++){
+        for (size_t i = index ; i < size_ ; i++){
             elements[i] = elements[i+1];
         }
         size_--;
