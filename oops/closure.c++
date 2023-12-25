@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int main() {
+int function(){
     int outside = 10;
 
     cout << "&outside = " << &outside << endl;
@@ -16,6 +16,14 @@ int main() {
 
     lambdaFunction();  // Output: outside: 10
     cout << "outside after lambdaFunction: " << outside << endl;  // Output: outside after lambdaFunction: 15
+
+    return outside;
+}
+
+
+int main() {
+    int ans = function();
+    cout << "ans : " << ans << endl;
 
     return 0;
 }
