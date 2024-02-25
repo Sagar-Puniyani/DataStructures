@@ -30,7 +30,6 @@ vector<int> nextSmallerElement(vector<int> &arr, int n){
         s.push(arr[i]);
         ans.insert(ans.begin() , num);
     }
-
     return ans;
 }
 
