@@ -71,43 +71,60 @@ public:
     // Pops top element from Mth Stack. Returns -1 if the stack is empty, otherwise returns the popped element.
     int pop(int m)
     {
-        // Write your code here.
-        return 9;
+        // underflow
+        if ( top[m-1] == -1 ){
+            return -1;
+        }
+
+        int index = top[m-1];
+
+        top[m-1] = next[index];
+
+        next[index] = freespot;
+
+        freespot = index;
+
+        return arr[index];
     }
+
+
 };
 
 
 int main()
 {
     NStack obj = NStack(3 , 9);
+
     obj.push( 10 , 1);
-
     cout << "arr" ;
     print(obj.arr , obj.s);
     cout << "next" ;
     print(obj.next , obj.s);
     cout << "top" ;
     print(obj.top , obj.n);
-    cout << endl;
+    cout << "freespot " << obj.freespot <<  endl;
+    cout<< endl;
 
 
-    obj.push( 100 , 2);
+    obj.push( 1000 , 2);
     cout << "arr" ;
     print(obj.arr , obj.s);
     cout << "next" ;
     print(obj.next , obj.s);
     cout << "top" ;
     print(obj.top , obj.n);
-    cout << endl;
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
 
-    obj.push( 1000 , 3);
+    obj.push( 9 , 3);
     cout << "arr" ;
     print(obj.arr , obj.s);
     cout << "next" ;
     print(obj.next , obj.s);
     cout << "top" ;
     print(obj.top , obj.n);
-    cout << endl;
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
 
 
     obj.push( 20 , 1);
@@ -117,7 +134,107 @@ int main()
     print(obj.next , obj.s);
     cout << "top" ;
     print(obj.top , obj.n);
-    cout << endl;
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    obj.push( 30 , 1);
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    obj.push( 2000 , 2);
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    obj.push( 19 , 3 );
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+
+    obj.push( 3000 , 2);
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    obj.push( 40 , 1);
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+    cout<< endl;
+
+
+    int var = obj.pop(1);
+    cout << "var  " << var << endl;
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    var = obj.pop(1);
+    cout << "var  " << var << endl;
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    var = obj.pop(1);
+    cout << "var  " << var << endl;
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+    var = obj.pop(1);
+    cout << "var  " << var << endl;
+    cout << "arr" ;
+    print(obj.arr , obj.s);
+    cout << "next" ;
+    print(obj.next , obj.s);
+    cout << "top" ;
+    print(obj.top , obj.n);
+    cout << "freespot " << obj.freespot << endl;
+    cout<< endl;
+
+
 
     return 0;
 }
