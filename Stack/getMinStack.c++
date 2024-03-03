@@ -82,6 +82,69 @@ public:
     }
 };
 
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class MinStack {
+    stack<long long> s;
+    long long min_; // Use long long to avoid overflow issues
+
+public:
+    MinStack() {
+        min_ = LLONG_MAX;
+    }
+    
+    void push(int curr) {
+        if (s.empty()) {
+            s.push(curr);
+            min_ = curr;
+        } else {
+            if (curr < min_) {
+                long long value = 2LL * curr - min_;
+                s.push(value);
+                min_ = curr;
+            } else {
+                s.push(curr);
+            }
+        }
+    }
+    
+    void pop() {
+        if (s.empty()) {
+            return;
+        }
+        long long curr = s.top();
+        s.pop();
+
+        if (curr < min_) {
+            min_ = 2LL * min_ - curr;
+        }
+    }
+    
+    int top() {
+        if (s.empty()) {
+            return -1;
+        }
+        
+        long long curr = s.top();
+
+        if (curr < min_) {
+            return min_;
+        } else {
+            return curr;
+        }
+    }
+    
+    int getMin() {
+        if (s.empty()) {
+            return -1;
+        }
+        return static_cast<int>(min_);
+    }
+};
+
 int main(){
 
     MinStack o;
