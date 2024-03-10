@@ -2,51 +2,58 @@
 #include <deque>
 #include <vector>
 using namespace std;
-template <typename T > 
+template <typename Container>
+void print(const Container& container) {
+    std::cout << "[ ";
+    for (const auto& element : container) {
+        std::cout << element << " ";
+    }
+    std::cout << "]\n";
+}
 
-vector<long long> printFirstNegativeInteger(T *A,
+vector<long long> printFirstNegativeInteger(long long int A[],
                                                 long long int N, long long int K) {
     
+    cout << "Printing " << endl;
     deque <long long int> dq;
     vector <long long > ans;
 
     for ( int i=0 ; i<K ; i++){
         if ( A[i] < 0 ){
-            ans.push_back(A[i]);
+            dq.push_back(i);
         }
     }
-    
+    print(dq);
+
+    if ( dq.size() > 0 ){
+        ans.push_back(A[dq.front()]);
+    }
+    else {
+        ans.push_back(0);
+    }
 
 
     // process for remaining windows 
     for ( int i=K ; i<N ; i++ ){
 
+        // removal 
+        if (!dq.empty() &&  i - dq.front()>= K ){
+            dq.pop_front();
+        }
+        // Addition 
+        if ( A[i] < 0 ){
+            dq.push_back(i);
+        }
+
+//      ans store 
         if ( dq.size() > 0 ){
         ans.push_back(A[dq.front()]);
         }
         else {
             ans.push_back(0);
         }
-        // removal 
-        if (!dq.empty() &&  i - K >= dq.front()){
-            dq.pop_front();
-        }
-        
-        if ( A[i] < 0 ){
-            dq.push_back(A[dq.front()]);
-        }
-
     }
     return ans;
-}
-
-template <typename T > 
-void print ( vector <T>  arr){
-    cout << "Called" << endl;
-    for ( auto element : arr ) {
-        cout << " " << element << endl;
-    }
-    cout << endl;
 }
 
 
@@ -58,5 +65,6 @@ int main() {
     long long int K = 3;
     vector < long long > ans = printFirstNegativeInteger(A , N , K  );
     print(ans);
+    return 0;
 }
 
