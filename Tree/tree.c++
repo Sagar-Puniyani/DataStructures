@@ -13,7 +13,6 @@ class node {
         (*this).data = data;
         (*this).left = NULL;
         (*this).right = NULL;
-
     }
 };
 
