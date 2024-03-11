@@ -26,14 +26,45 @@ node* buildTree(node* root){
         return NULL;
     }
 
-    cout << "Enter left data :" << endl;
+    cout << "Enter left data of  " << data << endl;
     root->left = buildTree(root->left);
 
-    cout << "Enter right data :" << endl;
+    cout << "Enter right data  " << data << endl;
     root->right = buildTree(root->right);
 
     return root;
 }
+
+
+void Inorder( node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    Inorder(root->left);
+    cout <<"  " <<  root->data ;
+    Inorder(root->right);
+}
+
+void preorder( node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    cout <<"  " <<  root->data ;
+    preorder(root->left);
+    preorder(root->right);
+}
+void postorder( node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    postorder(root->left);
+    postorder(root->right);
+    cout <<"  " <<  root->data ;
+}
+
 
 
 void levelorderTraversal( node* root ){
@@ -55,6 +86,12 @@ void levelorderTraversal( node* root ){
 }
 
 
+void  buildLevelTree( node * &root ){
+    queue < node* > q;
+
+}
+
+
 int main()
 {
     int a = 10;
@@ -68,7 +105,23 @@ int main()
 
     node* n;
     n = buildTree(n);
+
+    cout << endl;
+    cout << "Level Order "<< endl;
     levelorderTraversal(n);
+
+    cout << endl;
+    cout << "Inorder "<< endl;
+    Inorder(n);
+
+    cout << endl;
+    cout << "preorder "<< endl;
+    preorder(n);
+
+    cout << endl;
+    cout << "Postorder" << endl;
+    postorder(n);
+
 
     return 0;
 }
