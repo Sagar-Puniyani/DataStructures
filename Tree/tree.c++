@@ -88,6 +88,34 @@ void levelorderTraversal( node* root ){
 
 void  buildLevelTree( node * &root ){
     queue < node* > q;
+    cout << "Enter data for root "<< endl;
+    int data;
+    cin >> data;
+    root = new node( data );
+    q.push(root);
+
+    while ( !q.empty() ){
+        node* temp = q.front();
+        q.pop();
+
+        cout << "Enter left data : " << endl;
+        int leftData ;
+        cin >> leftData;
+
+        if ( leftData != -1 ){
+            temp -> left = new node( leftData);
+            q.push(temp->left);
+            
+        }
+        cout << "Enter right data : " << endl;
+        int rightData ;
+        cin >> rightData;
+
+        if ( rightData != -1 ){
+            temp -> right = new node( rightData);
+            q.push(temp->right);
+        }
+    }
 
 }
 
@@ -104,6 +132,7 @@ int main()
     cout << "*ptr = " << *ptr << endl;
 
     node* n;
+    /*
     n = buildTree(n);
 
     cout << endl;
@@ -118,6 +147,9 @@ int main()
     cout << "preorder "<< endl;
     preorder(n);
 
+    */
+
+    buildLevelTree(n);
     cout << endl;
     cout << "Postorder" << endl;
     postorder(n);
