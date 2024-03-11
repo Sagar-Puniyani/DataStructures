@@ -48,8 +48,19 @@ class KQueue {
 
         // check first insert 
         if ( front[qn-1] == -1 ){
-            
+            front[qn-1] = index;
         }
+        else{
+            next[rear[qn-1]] = index;
+        }
+
+        // update next 
+        next[index] =  -1 ;
+
+        // update rear 
+        rear[qn-1] = index;
+
+        arr[i] = data;
     }
 };
 
