@@ -28,25 +28,46 @@ int height(struct Node* node){
 }
 
 
+int diameter( Node* root ){
+    // base case 
+    if ( root == NULL ){
+        return 0;
+    }
+    else {
+        int leftDiameter = diameter(root->left);
+        int rightDiameter = diameter( root->right );
+        int RootDiameter = height(root->left ) + height( root->right );
+
+        return max( leftDiameter , max(rightDiameter , RootDiameter));
+    }
+}
+
 int main()
 {
     Node* n1 = new Node(1);
     Node* n2 = new Node(2);
     Node* n3 = new Node(3);
     Node* n4 = new Node(4);
+    Node* n5 = new Node(5);
 
     n1->left = n2;
-    n2->left = n3;
-    n3->left = n4;
+    n1->right = n3;
+
+    n2->left = n4;
+    n2->right = n5;
 
     int ans = height(n1);
     cout << "Height : " << ans << endl;
+
+    int Diameter = diameter( n1 );
+    cout << "Diameter : "  << Diameter << endl;
 
 
     delete n1;
     delete n2;
     delete n3;
     delete n4;
+    delete n5;
 
 
     return 0;
