@@ -28,6 +28,36 @@ int height(struct Node* node){
 }
 
 
+pair<int , int > Diameter( Node * root ){
+    // base case 
+    if ( root == NULL ){
+        pair < int , int > p = make_pair( 0 , 0 );
+        return p;
+    }
+    else {
+        pair<int , int> left = Diameter(root->left);
+        pair<int , int> right = Diameter(root->right);
+
+        int leftDiameter = left.first;
+        int rightDiameter = right.first;
+        int RootDiameter = left.second  + right.second;
+
+        int FinalDiameter = max( leftDiameter , max(rightDiameter , RootDiameter));
+
+        int leftHeight = left.second;
+        int rightHeight = right.second;
+
+        int FinalHeight = max( leftHeight , rightHeight ) + 1;
+        pair<int , int> p = make_pair( FinalDiameter , FinalHeight);
+        return p;
+    }
+}
+
+int diameterLogic( Node* root ){
+    pair <int , int > p = Diameter(root);
+    return p.first;
+}
+
 int diameter( Node* root ){
     // base case 
     if ( root == NULL ){
@@ -61,6 +91,9 @@ int main()
 
     int Diameter = diameter( n1 );
     cout << "Diameter : "  << Diameter << endl;
+
+    int Diameter1 = diameterLogic( n1 );
+    cout << "Diameter1 : "  << Diameter1 << endl;
 
 
     delete n1;
