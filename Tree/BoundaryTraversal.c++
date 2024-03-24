@@ -165,6 +165,11 @@ int main(){
     delete n5;
     delete n6;
     delete n7;
+    delete n8;
+    delete n9;
+    delete n10;
+    delete n11;
+
 
 
     return 0;
