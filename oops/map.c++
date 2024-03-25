@@ -34,7 +34,7 @@ int main(){
 
     }
     
-    std:: 
+    std:: cout << std :: endl;
 
     for ( auto KeyValuePair : map ){
         auto& key = (KeyValuePair).first;
@@ -43,6 +43,7 @@ int main(){
     std :: cout << key << " = " << value << std :: endl;
     }
 
+    std:: cout << std :: endl;
 
     for ( auto [key , value ] : map ){
     std :: cout << key << " = " << value << std :: endl;
