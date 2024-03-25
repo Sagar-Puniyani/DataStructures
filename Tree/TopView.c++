@@ -13,9 +13,18 @@ struct Node
     Node(int x) : data(x) , left(NULL) , right(NULL){}
 };
 
+void print(vector <int> arr ){
+    for ( auto item : arr ){
+        cout << item << "  ";
+    }
+    cout << endl;
+}
+
+
 
 vector<int> topView(Node *root){
-    map<int, int> m;
+
+map<int, int> m;
 queue<pair<int, Node*>> q;
 vector<int> ans;
 
@@ -32,16 +41,15 @@ while (!q.empty()) {
     int row = temp.first;
     Node* frontNode = temp.second;
 
-    // Insert into map only if the key doesn't exist
     if (m.find(row) == m.end()) {
         m[row] = frontNode->data;
     }
 
     if (frontNode->left) {
-        q.push(make_pair(row - 1, frontNode->left)); // Using frontNode instead of root
+        q.push(make_pair(row - 1, frontNode->left)); 
     }
     if (frontNode->right) {
-        q.push(make_pair(row + 1, frontNode->right)); // Using frontNode instead of root
+        q.push(make_pair(row + 1, frontNode->right)); 
     }
 }
 
@@ -54,7 +62,7 @@ while (!q.empty()) {
 
 }
 
-void main(){
+int  main(){
     Node* n1 = new Node(1);
     Node* n2 = new Node(2);
     Node* n3 = new Node(3);
@@ -64,7 +72,17 @@ void main(){
     Node* n7 = new Node(7);
     
     
-    
+    n1->left = n2;
+    n1->right = n3;
+
+    n2->left = n4;
+    n2->right = n5;
+
+    n3->left = n6;
+    n3->right = n7;
+
+    vector <int> ans = topView(n1);
+    print(ans);
 
     
     
@@ -77,5 +95,5 @@ void main(){
     delete n6;
     delete n7;
     
-    return ;
+    return 0;
 }
