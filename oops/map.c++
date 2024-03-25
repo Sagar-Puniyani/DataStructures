@@ -16,19 +16,36 @@ int main(){
     std::cout << "arr.begin: " << static_cast<void*>(&(*arr.begin())) << std::endl;
 
 
+
+
     // use of map 
+    std::cout << "==================Use of MAP===================" << std :: endl;
     using Map = std::unordered_map <std::string , int >;
 
     std :: unordered_map <std:: string , int > map;
     map["c++" ] = 2;
     map["sagar"] = 10;
 
-    for ( Map :: iterator item = map.begin() ; item != map.end() ; ++item  ){
-        auto& key = (*item).first;
-        auto& value  = (*item).second;
+    for ( Map :: iterator iterator = map.begin() ; iterator != map.end() ; ++iterator  ){
+        auto& key = (*iterator).first;
+        auto& value  = (*iterator).second;
 
     std :: cout << key << " = " << value << std :: endl;
 
+    }
+    
+    std:: 
+
+    for ( auto KeyValuePair : map ){
+        auto& key = (KeyValuePair).first;
+        auto& value  = (KeyValuePair).second;
+
+    std :: cout << key << " = " << value << std :: endl;
+    }
+
+
+    for ( auto [key , value ] : map ){
+    std :: cout << key << " = " << value << std :: endl;
     }
 
 
