@@ -63,6 +63,24 @@ vector<int> rightView(Node *root){
 }
 
 
+void solution (Node* root , vector <int>& ans , int level ){
+    // base case
+    if( root == NULL ) return;
+
+    if (level == ans.size() ){
+        ans.push_back(root->data);
+    }
+
+    solution( root->right , ans , level + 1);
+    solution( root->left , ans , level + 1 );
+}
+
+vector<int> rightViewDFS(Node *root){
+    vector <int> ans;
+    solution(root , ans , 0);
+    return ans;
+}
+
 int  main(){
     Node* n1 = new Node(1);
     Node* n2 = new Node(2);
@@ -92,6 +110,8 @@ int  main(){
     vector <int> ans = rightView(n1);
     print(ans);
 
+    vector <int> sol = rightViewDFS(n1);
+    print(sol);
     
     
     
