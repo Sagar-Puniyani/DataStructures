@@ -12,35 +12,40 @@ struct Node
 
 
 
-Node* lca(Node* root ,int n1 ,int n2 ){
-
-    if ( root == NULL ) return NULL;
-
-    else if ( root->data == n1 || root->data == n2 ){
+Node* lca(Node* root, int n1, int n2) {
+    if (root == NULL) return nullptr;
+    else if (root->data == n1 || root->data == n2) {
+        cout << "Data : " << root->data << endl;
         return root;
     }
 
-        Node* Left = lca(root->left , n1 , n2 );
-        Node * Right = lca(root->right , n1 , n2 );
+    Node* Left = lca(root->left, n1, n2);
+    Node* Right = lca(root->right, n1, n2);
 
-
-        if ( Left != NULL && Right == NULL ){
-            return  Left;
-        }
-
-        else if ( Left == NULL && Right != NULL ){
-            return  Right;
-        }
-        
-        else if ( Left != NULL && Right != NULL ){
-            return root;
-        }
-
-        else 
-            return NULL;
-
+    if (Left != NULL && Right == NULL) {
+        return Left;
+    }
+    else if (Left == NULL && Right != NULL) {
+        return Right;
+    }
+    else if (Left != NULL && Right != NULL) {
+        return root;
+    }
+    else
+        return nullptr;
 }
 
+
+
+void Inorder( Node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    Inorder(root->left);
+    cout <<"  " <<  root->data ;
+    Inorder(root->right);
+}
 
 
 int main()
@@ -61,7 +66,7 @@ int main()
 
     n2->left = n4;
 
-    n3->right = n5;
+    n3->left = n5;
     n3->right = n6;
     
     n4->right = n7;
@@ -69,8 +74,10 @@ int main()
     n6->left = n8;
 
 
-    Node* n = lca( n1 , 4 , 21 );
+    Node* n = lca( n1 , 21 , 4 );
     cout << "LCA : " << n->data << endl;
+
+    Inorder(n1);
     
     delete n1;
     delete n2;
