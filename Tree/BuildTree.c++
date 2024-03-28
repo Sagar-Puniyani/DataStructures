@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 
@@ -14,36 +15,80 @@ struct Node
 
 
 
+Node* BuildTree( vector<int> preorder , int psi , int pei , vector<int> inorder , int isi , int iei ){
+    cout << "isi = " << isi<< endl;
+    cout << "iei = " << iei<< endl;
+    if (isi > iei ) return nullptr;
+
+    int index = isi;
+    while ( inorder[index] != preorder[psi] ) index++;
+    cout << "index = " << index << endl;
+    int leftSize =  index - isi;
+    int rightSize = iei - index;
+
+    Node* node = new Node(preorder[psi]);
+
+    node->left = BuildTree(preorder, psi + 1, psi + leftSize, inorder, isi, index - 1);
+    node->right = BuildTree(preorder, psi + leftSize + 1, pei, inorder, index + 1, iei);
+
+
+    return node;
+
+}
+
+
+Node* buildTree( vector<int> preorder,  vector<int> inorder) {
+    int n = preorder.size();
+    cout << " n = " <<n <<endl;
+    Node* ans = BuildTree(preorder , 0 , n-1 , inorder , 0 , n-1);
+    return ans;
+}
+
+void Inorder( Node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    Inorder(root->left);
+    cout <<"  " <<  root->data ;
+    Inorder(root->right);
+}
+
+void postorder( Node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    postorder(root->left);
+    postorder(root->right);
+    cout <<"  " <<  root->data ;
+}
+
+void preorder( Node* root ){
+    if ( root == NULL ){
+        return;
+    }
+
+    cout <<"  " <<  root->data ;
+    preorder(root->left);
+    preorder(root->right);
+}
+
+
+
 int  main(){
-    Node* n1 = new Node(1);
-    Node* n2 = new Node(2);
-    Node* n3 = new Node(3);
-    Node* n4 = new Node(4);
-    Node* n5 = new Node(5);
-    Node* n6 = new Node(6);
+    vector <int>  in = {1 , 6 , 8 , 7};
+    vector <int>  pre  = { 1 , 6 , 7 , 8 };
 
-    
-    
-    n1->left = n2;
-    n1->right = n3;
-
-    n2->left = n4;
-
-    n3->left = n5;
-    n3->right = n6;
-
-
-    int ans = getMaxSum(n1);
-    cout << "Ans : " << ans << endl;
-
-    
-    
-    delete n1;
-    delete n2;
-    delete n3;
-    delete n4;
-    delete n5;
-    delete n6;
+    Node* ans = buildTree(in , pre  );
+    cout << "InOder : " << endl;
+    Inorder(ans);
+    cout << endl;
+    cout << "PreOrder  : " << endl;
+    preorder(ans);
+    cout << endl;
+    cout <<"PostOrder : " <<  endl;
+    postorder(ans);
 
 
     return 0;
