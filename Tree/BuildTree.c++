@@ -1,4 +1,6 @@
 #include <iostream>
+#include <queue>
+#include <map>
 #include <vector>
 using namespace std;
 
@@ -12,24 +14,41 @@ struct Node
     Node(int x) : data(x) , left(NULL) , right(NULL){}
 };
 
+void printMap( map <int , int > map ){
+    for ( auto [key , value ] : map ){
+        cout << key << " = " << value << endl;
+    }
+}
+
+map <int , int > CreateMap(vector <int> inorder ) {
+    map <int , int> map;
+    for ( int i=0 ; i<inorder.size() ; i++ ){
+        map[inorder[i]] = i;
+    }
+    printMap(map);
+    return map;
+}
 
 
-
-Node* BuildTree( vector<int> preorder , int psi , int pei , vector<int> inorder , int isi , int iei ){
+Node* BuildTree( vector<int> preorder , int psi , int pei , vector<int> inorder , int isi , int iei , map<int , int >map){
+    /*
+    cout << "psi = " << psi<< endl;
+    cout << "pei = " << pei<< endl;
     cout << "isi = " << isi<< endl;
     cout << "iei = " << iei<< endl;
+    */
+    
     if (isi > iei ) return nullptr;
 
-    int index = isi;
-    while ( inorder[index] != preorder[psi] ) index++;
-    cout << "index = " << index << endl;
-    int leftSize =  index - isi;
-    int rightSize = iei - index;
+   //cout << "preorder[psi] = "<< preorder[psi] << endl;
+    int index = map[preorder[psi]];
+    //cout << "index = " << index << endl;
+    int Size =  index - isi;
 
     Node* node = new Node(preorder[psi]);
 
-    node->left = BuildTree(preorder, psi + 1, psi + leftSize, inorder, isi, index - 1);
-    node->right = BuildTree(preorder, psi + leftSize + 1, pei, inorder, index + 1, iei);
+    node->left = BuildTree(preorder, psi + 1, psi + Size, inorder, isi, index - 1 , map );
+    node->right = BuildTree(preorder, psi + Size + 1, pei, inorder, index + 1, iei , map);
 
 
     return node;
@@ -40,7 +59,8 @@ Node* BuildTree( vector<int> preorder , int psi , int pei , vector<int> inorder 
 Node* buildTree( vector<int> preorder,  vector<int> inorder) {
     int n = preorder.size();
     cout << " n = " <<n <<endl;
-    Node* ans = BuildTree(preorder , 0 , n-1 , inorder , 0 , n-1);
+    map <int , int > map = CreateMap(inorder);
+    Node* ans = BuildTree(preorder , 0 , n-1 , inorder , 0 , n-1 , map );
     return ans;
 }
 
@@ -74,13 +94,31 @@ void preorder( Node* root ){
     preorder(root->right);
 }
 
+void levelorderTraversal( Node* root ){
+    queue <Node*> q;
+    q.push(root);
+
+    while ( !q.empty() ) {
+        Node* temp = q.front();
+        cout << temp->data << " " ;
+        q.pop();
+
+        if ( temp->left ) {
+            q.push(temp->left);
+        }
+        if ( temp->right ) {
+            q.push(temp->right);
+        }
+    }
+}
+
 
 
 int  main(){
-    vector <int>  in = {1 , 6 , 8 , 7};
-    vector <int>  pre  = { 1 , 6 , 7 , 8 };
+    vector <int>  in = {2 ,1,3 };
+    vector <int>  pre  = {1,2,3};
 
-    Node* ans = buildTree(in , pre  );
+    Node* ans = buildTree(pre , in  );
     cout << "InOder : " << endl;
     Inorder(ans);
     cout << endl;
@@ -89,6 +127,9 @@ int  main(){
     cout << endl;
     cout <<"PostOrder : " <<  endl;
     postorder(ans);
+    cout << endl;
+    cout <<"LevelOrderTraversal : " <<  endl;
+    levelorderTraversal(ans);
 
 
     return 0;
