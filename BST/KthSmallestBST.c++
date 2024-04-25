@@ -15,28 +15,29 @@ struct TreeNode
     }
 };
 
-int kthSmallestBST(TreeNode* root , int &count , int k ) {
-    if ( root == NULL ) {
-        return -1;
-    }
+void kthSmallestBST(TreeNode* root , int &count , int k , int &ans ) {
+    if ( root == NULL )  return;
+
     // Left 
-    int leftAns = kthSmallestBST( root->left , count , k );
-    if ( leftAns != -1 ) return leftAns;
+    kthSmallestBST( root->left , count , k , ans );
 
     // Node 
     count ++;
     if ( k == count ){
-        return root->val;
+        ans = root->val;
+        return;
     }
 
     //Right 
-    return kthSmallestBST(root->right , count , k);
+    kthSmallestBST(root->right , count , k , ans );
 }
 
 
 int kthSmallest(TreeNode* root, int k) {
     int count = 0;
-    return kthSmallestBST( root , count , k );
+    int ans;
+    kthSmallestBST( root , count , k , ans );
+    return ans;
 }
 
 int main(){
@@ -62,6 +63,7 @@ int main(){
 
     n6->right = n7;
 
+    cout << "Kth Smallest BST " << endl;
     int ans = kthSmallest(n5 , 3);
     cout << "Ans : " << ans << endl;
 
@@ -77,5 +79,5 @@ int main(){
     delete n10;
 
 
-    return 1;
+    return 0;
 }
