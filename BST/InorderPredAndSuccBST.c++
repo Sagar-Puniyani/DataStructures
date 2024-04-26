@@ -78,7 +78,7 @@ int main(){
     n6->right = n7;
 
     cout << "Inorder  Predecessor And Successor In BST : " << endl;
-    pair <int , int > p = predecessorSuccessor(n5 , 6);
+    pair <int , int > p = predecessorSuccessor(n5 , 3);
     auto [ Predecessor , Successor ] = p;
     cout << "first "<< Predecessor << "," << "second " << Successor << endl;
 
