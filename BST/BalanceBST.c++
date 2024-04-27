@@ -68,6 +68,27 @@ void traversal( TreeNode<int>* root ){
 }
 
 
+pair<int , bool> check(TreeNode<int>* root){
+    if ( root == NULL ) return make_pair( 0 , true);
+
+    pair<int , bool> p1 , p2;
+    p1 = check(root->left);
+    p2 = check(root->right);
+
+    int ht  = max(p1.first , p2.first ) + 1 ;
+    bool bal = p1.second &&  p2.second && abs(p1.first - p2.first ) > 1;
+
+    return make_pair(ht , bal);
+}
+
+bool isBalanced(TreeNode<int>* root) {
+
+    pair <int , bool > p;
+    p = check(root);
+    return p.second;
+
+}
+
 
 
 int main(){
@@ -99,6 +120,9 @@ int main(){
     TreeNode<int>* root =  balancedBst(n1);
     traversal(root);
     cout << endl;
+
+    bool checkBalanceBST = isBalanced(root);
+    cout << "Is balanced tree : " << checkBalanceBST << endl;
 
 
 
