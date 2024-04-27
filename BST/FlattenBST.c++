@@ -39,7 +39,7 @@ TreeNode* flatten(TreeNode* root){
     cout << "Size :  "<< arr.size() << endl;
 
     int i=0;
-    while( i <= arr.size()-2 ){
+    while( i <= arr.size()-1 ){
         cout << "Data : " << arr[i]->val << endl;
         arr[i]->left = NULL;
         arr[i]->right = arr[i+1];
