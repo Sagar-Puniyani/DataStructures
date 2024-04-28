@@ -43,6 +43,89 @@ TreeNode* helper(vector<int> arr , int start , int end ){
     return newNode;
 }
 
+void BSTtosortedDLL(TreeNode* root , TreeNode* head ) {
+    if ( root == NULL ) return;
+
+    BSTtosortedDLL(root->right , head);
+
+    root->right = head;
+    if( head != NULL ) 
+        head->left = root;
+    
+    head = root;
+
+    BSTtosortedDLL(root->left , head);
+}
+
+TreeNode* Merge_two_DLL(TreeNode* head1 , TreeNode* head2){
+
+    if (!head1) 
+        return head2; 
+
+    if (!head2) 
+        return head1; 
+
+
+    if (head1->data  < head2->data) 
+    { 
+        head1->right = Merge_two_DLL(first->next,second); 
+        head1->right->left = head1; 
+        head1->left = NULL; 
+        return head1; 
+    } 
+    else
+    { 
+        head2->right = Merge_two_DLL(first,second->next); 
+        head2->right->left = second; 
+        head2->left = NULL; 
+        return head2; 
+    } 
+}
+
+int NodeCount( TreeNode* head ){
+    if ( head == NULL ) return 0;
+
+    int count = 0;
+    while ( head != NULL ){
+        count++;
+        head = head->right;
+    }
+    return count;
+}
+
+TreeNode* SortedDLLtoBST(TreeNode* &head , int n ){
+
+    if ( n<=0 || head == NULL ) return NULL;
+
+    TreeNode* LeftSubTree = SortedDLLtoBST(head , n/2);
+
+    TreeNode*root = head;
+    root->left = LeftSubTree;
+
+
+    head = head->right;
+
+    root->right = SortedDLLtoBST(head , n/2 );
+    return root;
+}
+
+
+TreeNode* MergeBSTbyDLL(TreeNode* root1 , TreeNode* root2){
+    TreeNode* head1 = NULL;
+    TreeNode* head2 = NULL;
+
+    BSTtosortedDLL(root1 , head1);
+    BSTtosortedDLL(root2 , head2);
+    head1->left = NULL;
+    head2->left = NULL;
+
+    TreeNode * head = Merge_two_DLL(head1 , head2);
+
+    return SortedDLLtoBST(head , NodeCount(head));
+
+}
+
+
 vector<int> mergeBST(TreeNode *root1, TreeNode *root2){
     vector<int> arr1 , arr2 , arr3;
     arr1 = Inorder(root1 , arr1);
