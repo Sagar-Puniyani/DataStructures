@@ -1,7 +1,3 @@
-
- 84 changes: 84 additions & 0 deletions84  
-BST/mergeBST.c++
-@@ -0,0 +1,84 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>

@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
+        ".env*": "dotenv",
         "iostream": "cpp",
         "vector": "cpp",
         "ranges": "cpp",
@@ -91,6 +92,7 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "xiosbase": "cpp"
     }
 }
