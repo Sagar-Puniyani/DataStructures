@@ -74,11 +74,11 @@ void heapify(int *arr , int size , int index ){
     int leftindex = 2*index;
     int rightindex = 2*index +1;
 
-    if (leftindex<size && arr[largest] < arr[leftindex] && arr[leftindex] > arr[rightindex]){
+    if (leftindex<=size && arr[largest] < arr[leftindex] ){
         largest = leftindex;
     }
 
-    else if (rightindex < size && arr[largest] < arr[rightindex]&& arr[leftindex] < arr[rightindex]){
+    if (rightindex <= size && arr[largest] < arr[rightindex]){
         largest = rightindex;
     }
 
@@ -89,6 +89,33 @@ void heapify(int *arr , int size , int index ){
     }
     
 }
+
+
+void heapsort(int* arr, int n) {
+    // Build heap 
+    for (int i = n / 2; i >= 1; i--) {
+        heapify(arr, n, i);
+    }
+
+    cout << "Heap array: ";
+    for (int i = 1; i <= n; i++) {
+        cout << " " << arr[i];
+    }
+    cout << endl;
+
+
+    for (int i = n; i > 1; i--) {
+        swap(arr[1], arr[i]);
+
+        heapify(arr, i - 1, 1);
+    }
+    cout << "Heap array: ";
+    for (int i = 1; i <= n; i++) {
+        cout << " " << arr[i];
+    }
+    cout << endl;
+}
+
 
 
 int main(){
@@ -124,6 +151,15 @@ int main(){
         cout << " " << arr[i];
     }
     cout << endl;
+
+    cout << "Heap sort : " << endl;
+    int array[5] = {0 , 56 , 29 , 10 , 59 };
+    heapsort(array , 4);
+    for ( int i=0 ; i<=4 ; i++){
+        cout << " " << array[i];
+    }
+    cout << endl;
+
 
     return 0;
 }
