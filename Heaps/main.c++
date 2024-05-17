@@ -74,11 +74,11 @@ void heapify(int *arr , int size , int index ){
     int leftindex = 2*index;
     int rightindex = 2*index +1;
 
-    if (index < size && arr[largest] < arr[leftindex]){
+    if (leftindex<size && arr[largest] < arr[leftindex] && arr[leftindex] > arr[rightindex]){
         largest = leftindex;
     }
 
-    if (index < size && arr[largest] < arr[rightindex]){
+    else if (rightindex < size && arr[largest] < arr[rightindex]&& arr[leftindex] < arr[rightindex]){
         largest = rightindex;
     }
 
@@ -108,13 +108,14 @@ int main(){
 
     h.print();
 
+    cout << "Heapify Algo : " << endl;
     int arr[6] = {-1 , 10 , 55 , 53 , 52 ,  50};
     for ( int i=1 ; i<=5 ; i++){
         cout << " " << arr[i];
     }
     cout << endl;
     int size = 5;
-    for ( int i=size/2 ; i>1 ; i-- ){
+    for ( int i=size/2 -1 ; i>=1 ; i-- ){
     heapify(arr , size , i);
     }
 
