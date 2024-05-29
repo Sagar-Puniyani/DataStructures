@@ -70,7 +70,51 @@ class Trie{
         return searchUtil(child , word.substr(1));
     }
 
-    
+    bool deleteUtil(trieNode* root , string word){
+        if ( word.length() == 0 ){
+            if (root->isTerminated){
+            cout << "Reach at the end word" << endl;
+                root->isTerminated = false;
+
+                for ( int i=0; i<26; i++){
+                    if (root->children[i] != NULL){
+                        cout << "has further child " << endl;
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        int index = word[0] - 'A';
+        trieNode* child = root->children[index];
+        cout << child->data <<" at " << index <<  endl;
+
+        if (child == NULL) {
+            return false; // Word not found
+        }
+
+        bool shouldDeleteChild = deleteUtil(child, word.substr(1));
+
+        if (shouldDeleteChild){
+            cout << "Should Delete Block "<< endl;
+            delete child;
+            root->children[index] = NULL;
+
+            if (!root->isTerminated){
+                for (int i=0; i<26; i++){
+                    if (!(root->data == '\0') && root->children[i] != NULL ){
+                        auto data = (root->data == '\0') ? "NULL" : &root->data;
+                        cout << "has further child : " << data  << endl;
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 
     public:
     trieNode* root;
@@ -89,6 +133,11 @@ class Trie{
         return searchUtil(root , word);
     }
 
+    bool DeleteWord(string word){
+        cout << "Search for Deleting " << endl;
+        return deleteUtil(root, word);
+    }
+
 
 };
 
@@ -102,7 +151,14 @@ int main(){
 
     cout << "word present or not : " << t->searchWord("TIM") << endl;
     cout << "word present or not : " << t->searchWord("TIME") << endl;
+    cout << "ARM" << endl;
     cout << "word present or not : " << t->searchWord("ARM") << endl;
+
+    // deletion from the Trie (DT)
+
+    cout << "Deletion of the Word : " << t->DeleteWord("ARM") << endl;
+
+    delete t;
 
     return 0;
 }
