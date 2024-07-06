@@ -97,6 +97,7 @@
         "xstring": "cpp",
         "xutility": "cpp",
         "queue": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "ios": "cpp"
     }
 }
