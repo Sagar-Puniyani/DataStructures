@@ -47,9 +47,30 @@ int robTab(vector<int> &nums) {
     return solveTab(nums, n - 1,dp);
 }
 
+// space optimization 
+int Rob(vector<int> &nums) {
+    int n = nums.size();
+    if (n == 0) return nums[0];
+    if (n < 0) return 0;
+    
+    int temp1 = nums[0];
+    int temp2 = max(nums[0] , nums[1]);
+    int curr = -1;
+
+    for (int i=2; i< n; i++){
+        int left = temp1 + nums[i];
+        int right = temp2;
+        curr = max(left, right);
+        temp1 = temp2;
+        temp2 = curr;
+    }
+
+    return temp2;
+}
+
 int main() {
     vector<int> nums = {2, 1, 4, 9};
-    int ans = robTab(nums);
+    int ans = Rob(nums);
     cout << "Ans: " << ans << endl;
 
     return 0;
