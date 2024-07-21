@@ -68,9 +68,23 @@ int Rob(vector<int> &nums) {
     return temp2;
 }
 
+int RobCircular(vector<int> &nums) {
+    vector <int> temp1, temp2;
+    int n = nums.size();
+    for (int i=0; i<n;  i++){
+        if( i != 0) temp1.push_back(nums[i]);
+        if( i != n-1) temp2.push_back(nums[i]);
+    }
+
+    int ans1 = Rob(temp1);
+    int ans2 = Rob(temp2);
+
+    return max(ans1, ans2);
+}
+
 int main() {
     vector<int> nums = {2, 1, 4, 9};
-    int ans = Rob(nums);
+    int ans = RobCircular(nums);
     cout << "Ans: " << ans << endl;
 
     return 0;
