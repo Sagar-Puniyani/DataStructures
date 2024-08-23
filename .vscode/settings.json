@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
+        "*.md": "cuda-cpp",
         ".env*": "dotenv",
         "iostream": "cpp",
         "vector": "cpp",
@@ -98,6 +99,7 @@
         "xutility": "cpp",
         "queue": "cpp",
         "xmemory": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "execution": "cpp"
     }
 }
