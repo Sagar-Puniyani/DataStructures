@@ -100,6 +100,9 @@
         "queue": "cpp",
         "xmemory": "cpp",
         "ios": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "stack": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp"
     }
 }
