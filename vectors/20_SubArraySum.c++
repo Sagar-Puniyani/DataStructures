@@ -54,7 +54,9 @@ int main()
     int ans = findAllSubarraysWithGivenSum(arr, 6);
     cout << "sub array with sum  k : " << ans << endl;
 
-    int res = 
+    int res = subarraySum(arr, 6);
+
+    cout << "sub array with sum  k : " << res << endl;
 
     return 0;
 }
