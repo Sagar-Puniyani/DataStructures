@@ -39,6 +39,13 @@ int binary_decimal(string str)
     return num;
 }
 
+void swapping(int &a, int &b)
+{
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+}
+
 int main()
 {
     int n;
@@ -55,6 +62,20 @@ int main()
 
     int val = 13 | 7;
     cout << val << endl;
+
+    val = 13 >> 1;
+    cout << "Right shift : " << val << endl;
+
+    val = 13 << 1;
+    cout << "Left shift : " << val << endl;
+
+    val = ~5;
+    cout << "Left shift : " << val << endl;
+
+    int a = 10 , b = 20;
+    swapping(a,b);
+    cout << "a = " << a << endl;
+    cout << "b = " << b << endl;
 
     return 0;
 }
