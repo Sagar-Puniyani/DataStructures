@@ -45,6 +45,14 @@ void swapping(int &a, int &b)
     b = a ^ b;
     a = a ^ b;
 }
+// bit set or not
+bool checkKthBit(int n, int k)
+{
+    // Your code here
+    // It can be a one liner logic!! Think of it!!
+    //! It is the left shift
+    return n & (1 << k);
+}
 
 int main()
 {
@@ -70,12 +78,15 @@ int main()
     cout << "Left shift : " << val << endl;
 
     val = ~5;
-    cout << "Left shift : " << val << endl;
+    cout << "Not operator : " << val << endl;
 
-    int a = 10 , b = 20;
-    swapping(a,b);
+    int a = 10, b = 20;
+    swapping(a, b);
     cout << "a = " << a << endl;
     cout << "b = " << b << endl;
+    cout << "0 shift : " << 1<<0 << endl;
+
+    cout << "Bit set or not : " << checkKthBit(4, 0) << endl;
 
     return 0;
 }
