@@ -54,6 +54,46 @@ bool checkKthBit(int n, int k)
     return n & (1 << k);
 }
 
+int setKthBit(int n, int k){
+    n = n | (1<<k);
+    return n;
+}
+
+int clearKthBit(int n, int k){
+    n = n & ~(1<<k);
+    return n;
+}
+
+int ToggleKthBit(int n, int k){
+    n = n ^ (1<<k);
+    return n;
+}
+
+// toggle the Last set bit
+int toggleLastSetBit(int n){
+    return n&(n-1);
+}
+
+bool checkPowerOf2(int n){
+    if (n & (n-1) == 0){
+        return true;
+    }
+    return false;
+}
+
+int countSetBits(int n ){
+    int cnt = 0;
+    while (n > 1)
+    {
+        cnt += (n & 1);
+        n = n >> 1;        
+    }
+    if (n == 1) cnt++;
+
+    return cnt;
+    
+}
+
 int main()
 {
     int n;
@@ -87,6 +127,20 @@ int main()
     cout << "0 shift : " << 1<<0 << endl;
 
     cout << "Bit set or not : " << checkKthBit(4, 0) << endl;
+
+    cout << "10 ^ 0 : " << (int)(a ^ 0) << endl;
+
+    int num = 9;
+    cout << "set bit : "<< setKthBit(num,2) << endl;
+
+    cout << "Toggle ith Bit : " << ToggleKthBit(num, 2) << endl;
+    num = 13;
+    cout << "Clear ith Bit : " << clearKthBit(num, 2)<< endl;
+
+    cout << "Toggle Last set bit : " << toggleLastSetBit(84) << endl;
+
+    cout << "Check power of 2 : " << (int)(checkPowerOf2(8)) << endl;
+
 
     return 0;
 }
