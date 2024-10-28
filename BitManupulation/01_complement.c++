@@ -91,9 +91,7 @@ int countSetBits(int n ){
     if (n == 1) cnt++;
 
     return cnt;
-    
 }
-
 int main()
 {
     int n;
@@ -140,6 +138,9 @@ int main()
     cout << "Toggle Last set bit : " << toggleLastSetBit(84) << endl;
 
     cout << "Check power of 2 : " << (int)(checkPowerOf2(8)) << endl;
+
+    cout << "Count set bits : " << countSetBits(13) << endl;
+    cout << "count set bits(with inbuilt) : " << __builtin_popcount(13) << endl;
 
 
     return 0;
